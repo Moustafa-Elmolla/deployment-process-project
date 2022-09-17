@@ -4,11 +4,9 @@
 
 # Udagram
 
-# frontend:install : `cd udagram/udagram-frontend && npm install -f`
+## S3 Link
 
-//
-
-# api:install : `cd udagram/udagram-api && npm install `
+URL: http://udacit-udagram.s3-website-us-east-1.amazonaws.com
 
 ### Dependencies
 
@@ -27,36 +25,31 @@
 
 ### Installation
 
-1.  `cd starter/udagram-api` to install the node_modules `npm install`.
-    After installation is done start the api in dev mode with `npm run dev`.
-2.  navigate to the udagram-frontend `cd starter/udagram-frontend` to intall the node_modules `npm install`.
-    After installation is done start the api in dev mode with `npm run start`.
+Provision the necessary AWS services needed for running the application:
 
-3.  Configuring the AWS CLI:
-    go to the link
-    https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html
-    and following instructure
-    (AWS IAM)
-    then create user with admin permissions just for succees in all tested
+1. In AWS, provision a publicly available RDS database running Postgres. https://us-east-1.console.aws.amazon.com/rds/home?region=us-east-1#databases:
+1. In AWS, provision a s3 bucket for hosting the uploaded files. https://s3.console.aws.amazon.com/s3/buckets/udacit-udagram?region=us-east-1&tab=objects
+1. Export the ENV variables needed or use a package like [dotnev](https://www.npmjs.com/package/dotenv)/.
+1. From the root of the repo, navigate udagram-api folder `cd starter/udagram-api` to install the node_modules `npm install`. After installation is done start the api in dev mode with `npm run dev`.
+1. Without closing the terminal in step 1, navigate to the udagram-frontend `cd starter/udagram-frontend` to intall the node_modules `npm install`. After installation is done start the api in dev mode with `npm run start`.
 
-    4. `npm run build` for build the project in path we need (assume it /www)
+## Testing
 
-       `eb init` for initiate Elastic Beanstalk
+This project contains two different test suite: unit tests and End-To-End tests(e2e). Follow these steps to run the tests.
 
-       `eb create` for upload the build archive to the Elastic Beanstalk
+1. `cd starter/udagram-frontend`
+1. `npm run test`
+1. `npm run e2e`
 
-       `eb deploy` for deploy any future changes
+There are no Unit test on the back-end
 
-4.  RDS - Create Postgres DB
-    go to the link
-    https://us-east-1.console.aws.amazon.com/rds/home?region=us-east-1#
-    then Create Database
-    then following instructure and as shown in icluded screenshoots
+### Unit Tests:
 
-5.  Elastic Beanstalk
-    got to the link
-    https://us-east-1.console.aws.amazon.com/elasticbeanstalk/home?region=us-east-1#/environments
-    and following instructure and as shown in attached screenshoots
+Unit tests are using the Jasmine Framework.
+
+### End to End Tests:
+
+The e2e tests are using Protractor and Jasmine.
 
 ## Built With
 
