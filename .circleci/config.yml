@@ -17,51 +17,29 @@ jobs:
       - checkout
       - aws-cli/setup
       - eb/setup
-      # Use root level package.json to install dependencies in the frontend app
+      # Use root level package.json to install dependencies in app
       - run:
-          name: Install Front-End Dependencies
+          name: Front-End Install
           command: |
-            echo "NODE --version" 
-            echo $(node --version)
-            echo "NPM --version" 
-            echo $(npm --version)
             npm run frontend:install
-      # TODO: Install dependencies in the the backend API
-      - run:
-          name: Install API Dependencies
-          command: |
-            echo "TODO: Install dependencies in the the backend API  "
-      # TODO: Lint the frontend
       - run:
           name: Front-End Lint
           command: |
-            echo "TODO: Lint the frontend"
-      # TODO: Build the frontend app
+            npm run frontend:lint
       - run:
           name: Front-End Build
           command: |
-            echo "TODO: Build the frontend app"
-      # TODO: Build the backend API
+            npm run frontend:build
       - run:
-          name: API Build
+          name: Back-End Install
           command: |
-            echo "TODO: Build the backend API"
-  # deploy step will run only after manual approval
-  deploy:
-    docker:
-      - image: "cimg/base:stable"
-      # more setup needed for aws, node, elastic beanstalk
-    steps:
-      - node/install:
-          node-version: "14.15"
+            npm run api:install
       - run:
-          name: Deploy BackEnd API
-          # TODO: Install, build, deploy
+          name: Back-End Build
           command: |
-            npm run api:deploy
+            npm run api:build
       - run:
-          name: Deploy FrontEnd API
-          # TODO: Install, build, deploy
+          name: Deploy App
           command: |
             npm run frontend:deploy
 
